@@ -1,0 +1,2 @@
+class Evaluater < ApplicationRecord
+end
