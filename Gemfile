@@ -14,6 +14,7 @@ gem 'mini_magick', '4.9.5'
 gem 'will_paginate'
 gem 'active_storage_validations', '1.0.3'
 gem 'bcrypt', '~> 3.1.7'
+gem 'htmlbeautifier'
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'

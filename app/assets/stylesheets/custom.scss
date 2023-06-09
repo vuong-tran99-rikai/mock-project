@@ -325,3 +325,15 @@ span.image {
 .users.follow {
   padding: 0;
 }
+
+.custom-select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.custom-select option {
+  background-color: #f7f7f7;
+  color: #333;
+  padding: 5px;
+}
