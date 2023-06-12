@@ -1,0 +1,39 @@
+<% provide(:title, 'All Books') %>
+<h1>All Books</h1>
+
+<table id="books-table" class="display">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Author</th>
+      <th>Quantity</th>
+      <th>Category</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= book.name_book %></td>
+        <td><%= book.description %></td>
+        <td><%= book.author %></td>
+        <td><%= book.quantity %></td>
+        <td><%= book.category.name_category %></td>
+        <td><%= book.status == 1 ? 'Hiển thị' : 'Tạm tắt' %></td>
+        <td>
+          <%# link_to 'Edit', edit_book_path(book), class: 'edit-link' %>
+          <%= button_to 'Delete', books_path(book), method: :destroy %>
+        
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function() {
+    $('#books-table').DataTable();
+  });
+</script>

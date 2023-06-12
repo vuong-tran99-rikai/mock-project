@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2023_06_09_071307) do
 
   create_table "books", force: :cascade do |t|
     t.string "name_book"
-    t.string "desciption"
+    t.string "description"
     t.string "author"
     t.integer "quantity"
     t.bigserial "category_id", null: false
