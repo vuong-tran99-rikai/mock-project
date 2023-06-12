@@ -4,11 +4,16 @@
        <nav>
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Home", root_path %></li>
-
-            <li><%= link_to "Categories", create_categories_path  %></li>
-          <li><%= link_to "Users", users_path %></li>
-            <li><%= link_to "Setting", '#' %></li>
-            <li><%= link_to "Log in", login_path %></li>
+            <% if logged? %>
+               <% if admin_user? %>
+                  <li><%= link_to "Categories", create_categories_path  %></li>
+                  <li><%= link_to "Users", users_path %></li>
+               <% end %>
+               <li><%= link_to "Setting", '#' %></li>
+               <li><%= link_to "Logout", '#' %></li>
+            <% else %>
+               <li><%= link_to "Log in", login_path %></li>
+            <% end %>
           </ul>
        </nav>
     </div>

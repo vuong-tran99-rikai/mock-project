@@ -68,9 +68,9 @@ ActiveRecord::Schema.define(version: 2023_06_09_071307) do
     t.string "email"
     t.string "password_digest"
     t.string "address"
+    t.string "type_account"
     t.string "phone"
     t.string "status"
-    t.boolean "type_accout"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

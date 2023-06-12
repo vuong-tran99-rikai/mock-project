@@ -12,8 +12,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
-    if @user.save
+
+    @user = User.new(user_params.merge!(status: :opened, type_account: :customer))
+    if @user.save 
       flash[:info] = "User created successfully"
       redirect_to @user
     else
