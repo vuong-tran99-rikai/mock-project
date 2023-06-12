@@ -18,6 +18,6 @@ end
 
 private
 def book_params
-    params.require(:book).permit(:name_book, :description, :author, :quantity, :category_id, :status)
+    params.require(:book).permit(:name_book, :desciption, :author, :quantity, :category_id, :status)
 end
 end
