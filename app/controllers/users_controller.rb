@@ -12,9 +12,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
-    if @user.save
+    @user = User.new(user_params.merge!(status: 0, type_account: 0)) # 0: open, 0: customer
+    if @user.save 
       flash[:info] = "User created successfully"
+      log_in(@user)
       redirect_to @user
     else
       flash[:error] = "An error has occurred"

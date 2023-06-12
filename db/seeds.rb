@@ -1,8 +1,11 @@
 require 'faker'
-# User.create!(name: 'Example User',
-#              email: 'example@railstutorial.org',
-#              password: 'foobar',
-#              password_confirmation: 'foobar')
+User.create!(name: 'admin',
+             email: 'admin@example.com',
+             password: 'admin',
+             password_confirmation: 'admin',
+             status: :opened,
+             type_account: :admin
+            )
 
 
 # 99.times do |n|
@@ -12,11 +15,7 @@ require 'faker'
 #   User.create!(name: name,
 #                email: email,
 #                password: password,
-#                password_confirmation: password)
+#                password_confirmation: password,
+#                status: :opened
+#               )
 # end
-99.times do
-  Category.create(
-    name_category: Faker::Lorem.word,
-    status: rand(0..1)
-  )
-end
