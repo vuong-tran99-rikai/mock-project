@@ -1,0 +1,57 @@
+<% provide(:title, 'Create Book') %>
+<h1>Create Book</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@books) do |f| %>
+      <%= f.label :name_book %>
+      <%= f.text_field :name_book, class: 'form-control' %>
+      <% if @books.errors.has_key?(:name_book) %>
+        <div class="error">
+          <%= @books.errors[:name_book].first %>
+        </div>
+      <% end %>
+      
+      <%= f.label :desciption %>
+      <%= f.text_field :desciption, class: 'form-control' %>
+      <% if @books.errors.has_key?(:desciption) %>
+        <div class="error">
+          <%= @books.errors[:desciption].first %>
+        </div>
+      <% end %>
+      
+      <%= f.label :author %>
+      <%= f.text_field :author, class: 'form-control' %>
+      <% if @books.errors.has_key?(:author) %>
+        <div class="error">
+          <%= @books.errors[:author].first %>
+        </div>
+      <% end %>
+      
+      <%= f.label :quantity %>
+      <%= f.number_field :quantity, class: 'form-control' %>
+      <% if @books.errors.has_key?(:quantity) %>
+        <div class="error">
+          <%= @books.errors[:quantity].first %>
+        </div>
+      <% end %>
+      
+      <%= f.label :category_id %>
+      <%= f.collection_select :category_id, Category.all, :id, :name_category, {}, class: 'form-control' %>
+      <% if @books.errors.has_key?(:category_id) %>
+        <div class="error">
+          <%= @books.errors[:category_id].first %>
+        </div>
+      <% end %>
+      
+      <%= f.label :status %>
+      <%= f.select :status, { "1" => "Hiển thị", "0" => "Tạm tắt" }, { prompt: 'Chọn trạng thái' }, class: 'form-control' %>
+      <% if @books.errors.has_key?(:status) %>
+        <div class="error">
+          <%= @books.errors[:status].first %>
+        </div>
+      <% end %>
+      
+      <%= f.submit "Create Book", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

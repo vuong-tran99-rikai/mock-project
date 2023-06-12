@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2023_06_09_071307) do
   enable_extension "plpgsql"
 
   create_table "books", force: :cascade do |t|
-    t.string "title"
+    t.string "name_book"
     t.string "desciption"
     t.string "author"
     t.integer "quantity"
