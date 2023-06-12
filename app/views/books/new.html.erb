@@ -44,7 +44,7 @@
       <% end %>
       
       <%= f.label :status %>
-      <%= f.select :status, { "1" => "Hiển thị", "0" => "Tạm tắt" }, { prompt: 'Chọn trạng thái' }, class: 'form-control' %>
+      <%= f.select :status, { "Hiển thị" => "1", "Tạm tắt" => "0" }, { prompt: 'Chọn trạng thái' }, class: 'form-control' %>
       <% if @books.errors.has_key?(:status) %>
         <div class="error">
           <%= @books.errors[:status].first %>
