@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2023_06_09_071307) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
+    t.string "remember_digest"
     t.string "address"
     t.integer "type_account"
     t.string "phone"
