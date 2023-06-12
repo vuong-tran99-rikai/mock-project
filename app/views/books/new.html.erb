@@ -11,11 +11,11 @@
         </div>
       <% end %>
       
-      <%= f.label :desciption %>
-      <%= f.text_field :desciption, class: 'form-control' %>
+      <%= f.label :description %>
+      <%= f.text_field :description, class: 'form-control' %>
       <% if @books.errors.has_key?(:desciption) %>
         <div class="error">
-          <%= @books.errors[:desciption].first %>
+          <%= @books.errors[:description].first %>
         </div>
       <% end %>
       
