@@ -1,6 +1,5 @@
 module SessionHelper
   def log_in(user)
-    byebug
     session[:user_id] = user.id
     session[:user_type] = user.type_account 
   end
@@ -16,8 +15,7 @@ module SessionHelper
   end
 
   def admin_user?
-    
-    return true if session[:type] == :admin
-    return false if session[:type] == :customer
+    return true if session[:user_type] == 'admin'
+    return false
   end
 end

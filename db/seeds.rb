@@ -4,7 +4,7 @@ User.create!(name: 'admin',
              password: 'admin',
              password_confirmation: 'admin',
              status: :opened,
-             type_account: 1
+             type_account: :admin
             )
 
 
