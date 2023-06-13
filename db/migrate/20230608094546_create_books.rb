@@ -8,6 +8,6 @@ class CreateBooks < ActiveRecord::Migration[6.1]
       t.bigserial :category_id
       t.integer :status
       t.timestamps
-    end
+    end   
   end
 end

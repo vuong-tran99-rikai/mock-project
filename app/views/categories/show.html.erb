@@ -1,0 +1,24 @@
+<table class="custom-table">
+  <thead>
+    <tr>
+      <%# <th>STT</th> %>
+      <th>Name_category</th>
+      <th>Status</th>
+      <th>Action</th>
+      <!-- Các cột khác (nếu có) -->
+    </tr>
+  </thead>
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.name_category %></td>
+        <td>
+          <%# button_to category.status.to_s.humanize , "/toggle_status/"+ category.id%>
+          <%= button_to category.status.to_s.humanize, toggle_status_path(category.id), method: :get, class: 'toggle-status-button', remote: true %>
+        </td>
+        <td><%= button_to "delete", category_destroy_path(category.id), method: :get, class: 'toggle-status-button', remote: true %><%= button_to "edit", category_edit_path(category),method: :get %></td>
+        <!-- Các cột khác (nếu có) -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
