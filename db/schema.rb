@@ -40,7 +40,10 @@ ActiveRecord::Schema.define(version: 2023_06_08_094834) do
   end
 
   create_table "discounts", force: :cascade do |t|
-    t.string "name"
+    t.string "name_KM"
+    t.float "gia_KM"
+    t.date "start_day"
+    t.date "end_day"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
