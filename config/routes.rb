@@ -38,5 +38,7 @@ Rails.application.routes.draw do
   post '/login', to: 'session#create'
   get '/signup', to: 'users#new'
   get '/logout', to: 'session#destroy'
+  get '/convert_status/:id', to: 'users#convert_status', as: 'convert_status'
+
 
 end
