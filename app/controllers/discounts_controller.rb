@@ -1,0 +1,62 @@
+require 'date'
+class DiscountsController < ApplicationController
+    def new
+        @discounts = Discount.new
+    end
+    def create
+        @discounts = Discount.new(discount_param)
+        @discounts.status = params[:discount][:status].to_i
+        if @discounts.save
+            flash[:success] = 'Đã tạo thành công Discount'
+            redirect_to '/create-discounts'
+        else
+            flash[:danger] = 'vui lòng nhập thông tin'
+            render :new
+        end
+    end
+
+    def show
+        @discounts = Discount.where(status: [0, 1])
+        current_date = Date.current
+        if(@discounts)
+            @discounts = Discount.where(status: [0, 1]).order(:id)
+            @discounts.each do |discount|
+                if discount.start_day <= current_date && discount.end_day >= current_date
+                    discount.status = 'Hiển thị'
+                elsif  discount.end_day < current_date
+                    discount.status = 'Tạm tắt'
+                else
+                    discount.status = 'Tạm tắt'
+                end
+                discount.save
+            end
+           
+        else
+            @discounts = []
+        end
+    end
+    def destroy
+        @discount = Discount.find(params[:id])
+        @discount.status = 2
+        @discount.save
+        redirect_to '/discount'
+    end
+    def edit
+        @discount = Discount.find(params[:id])
+    end
+    def update
+        @discount = Discount.find(params[:id])
+        if @discount.update(discount_param)
+          flash[:success] = 'Update thành công'
+          redirect_to '/discount'
+        else
+          flash[:danger] = 'Category không tồn tại'
+          redirect_to '/discount'
+        end
+    end
+    private
+    
+    def discount_param
+        params.require(:discount).permit(:name_KM, :gia_KM, :start_day, :end_day)
+    end
+end
