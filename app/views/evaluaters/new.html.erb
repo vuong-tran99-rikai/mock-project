@@ -1,0 +1,14 @@
+<h1>New Evaluater</h1>
+
+<%= form_for(@evaluater, url: evaluaters_path) do |form| %>
+  <%= form.label :book_id %>
+  <%= form.select :book_id, options_for_select(Book.pluck(:name_book, :id)) %>
+
+  <%= form.label :level %>
+  <%= form.number_field :level %>
+
+  <%= form.label :user_id %>
+  <%= form.select :user_id, options_for_select(User.pluck(:name, :id)) %>
+
+  <%= form.submit 'Create Evaluater' %>
+<% end %>

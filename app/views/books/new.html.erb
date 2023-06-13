@@ -37,6 +37,7 @@
           <%= @books.errors[:quantity].first %>
         </div>
       <% end %>
+
       <%= f.label :price %>
       <%= f.number_field :price, class: 'form-control' %>
       <% if @books.errors.has_key?(:price) %>
@@ -44,7 +45,15 @@
           <%= @books.errors[:price].first %>
         </div>
       <% end %>
-      
+
+          <%= f.label :image %>
+      <%= f.text_field :image, class: 'form-control' %>
+      <% if @books.errors.has_key?(:price) %>
+        <div class="error">
+          <%= @books.errors[:image].first %>
+        </div>
+      <% end %>
+
       <%= f.label :category_id %>
       <%= f.collection_select :category_id, Category.all, :id, :name_category, {}, class: 'form-control' %>
       <% if @books.errors.has_key?(:category_id) %>

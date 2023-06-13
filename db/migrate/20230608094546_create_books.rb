@@ -6,6 +6,7 @@ class CreateBooks < ActiveRecord::Migration[6.1]
       t.string :author
       t.integer :quantity
       t.integer :price 
+      t.string  :image
       t.bigserial :category_id
       t.integer :status
       t.timestamps

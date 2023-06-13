@@ -9,6 +9,7 @@
       <th>Author</th>
       <th>Quantity</th>
       <th>Price</th>
+      <th>image</th>
       <th>Category</th>
       <th>Status</th>
       <th>Actions</th>
@@ -22,6 +23,7 @@
         <td><%= book.author %></td>
         <td><%= book.quantity %></td>
         <td><%= book.price%></td>
+        <td><%= book.image%></td>
         <td><%= book.category.name_category %></td>
            <td>
   <%= button_to book.status.to_s.humanize, toggle_status_book_path(book.id), method: :get, class: 'toggle-status-button', remote: true %>

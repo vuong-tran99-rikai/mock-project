@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2023_06_08_094834) do
     t.string "author"
     t.integer "quantity"
     t.integer "price"
+    t.string "image"
     t.bigserial "category_id", null: false
     t.integer "status"
     t.datetime "created_at", precision: 6, null: false
@@ -53,7 +54,9 @@ ActiveRecord::Schema.define(version: 2023_06_08_094834) do
   end
 
   create_table "evaluaters", force: :cascade do |t|
-    t.string "name"
+    t.integer "book_id"
+    t.integer "level"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
