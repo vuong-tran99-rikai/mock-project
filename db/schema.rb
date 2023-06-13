@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2023_06_08_094834) do
     t.string "description"
     t.string "author"
     t.integer "quantity"
+    t.integer "price"
     t.bigserial "category_id", null: false
     t.integer "status"
     t.datetime "created_at", precision: 6, null: false
