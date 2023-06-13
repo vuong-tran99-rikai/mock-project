@@ -8,6 +8,7 @@
       <th>Description</th>
       <th>Author</th>
       <th>Quantity</th>
+      <th>Price</th>
       <th>Category</th>
       <th>Status</th>
       <th>Actions</th>
@@ -20,13 +21,15 @@
         <td><%= book.description %></td>
         <td><%= book.author %></td>
         <td><%= book.quantity %></td>
+        <td><%= book.price%></td>
         <td><%= book.category.name_category %></td>
-        <td><%= book.status == 1 ? 'Hiển thị' : 'Tạm tắt' %></td>
-        <td>
-          <%# link_to 'Edit', edit_book_path(book), class: 'edit-link' %>
-          <%= button_to 'Delete', books_path(book), method: :destroy %>
-        
+           <td>
+  <%= button_to book.status.to_s.humanize, toggle_status_book_path(book.id), method: :get, class: 'toggle-status-button', remote: true %>
         </td>
+       <td>
+  <%= button_to "delete", books_destroy_path(book.id), method: :get, class: 'toggle-status-button', remote: true %>
+  <%= button_to "edit", books_edit_path(book), method: :get %>
+</td>
       </tr>
     <% end %>
   </tbody>
