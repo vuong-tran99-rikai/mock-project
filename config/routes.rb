@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :users
   resources :categories
   resources :books
+  resources :evaluaters
+
   get '/create-categories', to: 'categories#new'
   post '/create-categories', to: 'categories#create'
 

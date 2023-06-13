@@ -56,6 +56,6 @@ def update
 
 private
 def book_params
-    params.require(:book).permit(:name_book, :description, :author, :quantity,:price, :category_id)
+    params.require(:book).permit(:name_book, :description, :author, :quantity,:price,:image , :category_id)
 end
 end
