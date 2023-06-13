@@ -4,7 +4,8 @@ class User < ApplicationRecord
 
   enum status: {
     opened: 0,
-    deleted: 1
+    deleted: 1,
+    closed: 2
   }
 
   enum type_account: {

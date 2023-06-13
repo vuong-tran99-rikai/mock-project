@@ -1,0 +1,31 @@
+<% provide(:title, 'List discounts') %>
+<h1>List discounts</h1>
+<table class="custom-table">
+  <thead>
+    <tr>
+      <%# <th>STT</th> %>
+      <th>Name KM</th>
+      <th>Giá KM</th>
+      <th>Start day</th>
+      <th>End day</th>
+      <th>Status</th>
+      <th>Action</th>
+      <!-- Các cột khác (nếu có) -->
+    </tr>
+  </thead>
+  <tbody>
+    <% @discounts.each do |discount| %>
+      <tr>
+        <td><%= discount.name_KM %></td>
+        <td><%= discount.gia_KM %> % </td>
+        <td><%= discount.start_day %></td>
+        <td><%= discount.end_day %></td>
+        <td style = "text-align:center ">
+          <%=discount.status.to_s.humanize %>
+        </td>
+        <td><%= button_to "delete",discount_destroy_path(discount.id), method: :get, class: 'toggle-status-button', remote: true%><%= button_to "edit", discount_edit_path(discount),method: :get %></td>
+        <!-- Các cột khác (nếu có) -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>

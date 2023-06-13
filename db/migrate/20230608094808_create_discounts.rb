@@ -5,6 +5,7 @@ class CreateDiscounts < ActiveRecord::Migration[6.1]
       t.float :gia_KM
       t.date :start_day
       t.date :end_day
+      t.integer :status
       t.timestamps
     end
   end
