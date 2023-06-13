@@ -35,9 +35,11 @@ ActiveRecord::Schema.define(version: 2023_06_08_094834) do
   end
 
   create_table "discount_details", force: :cascade do |t|
-    t.string "name"
+    t.bigserial "book_id", null: false
+    t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigserial "discount_id", null: false
   end
 
   create_table "discounts", force: :cascade do |t|
@@ -45,6 +47,7 @@ ActiveRecord::Schema.define(version: 2023_06_08_094834) do
     t.float "gia_KM"
     t.date "start_day"
     t.date "end_day"
+    t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -80,4 +83,6 @@ ActiveRecord::Schema.define(version: 2023_06_08_094834) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "discount_details", "books"
+  add_foreign_key "discount_details", "discounts"
 end
