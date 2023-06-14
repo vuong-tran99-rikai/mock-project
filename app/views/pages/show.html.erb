@@ -1,0 +1,22 @@
+<div class="detail_book">
+  <div class="detail_book_left">
+    <%= image_tag @book.image %>
+  </div>
+  <div class="detail_book_right">
+    <div class="detail_content">
+      <div class="detail_name"><%= @book.name_book %></div>
+      <div class="detail_price"><%= @book.price %> đ</div>
+      <div class="detail_title_description">Mô tả:</div>
+      <div class="detail_description"><%= @book.description %></div>
+      <div class="detail_author">Tác giả: <%= @book.author %></div>
+      <div class="detail_quantity">Số lượng: <%= @book.quantity %></div>
+      <%= number_field :quantity, class: 'form-control' %>
+      <%= button_to "Thêm",
+          add_item_path(@book.id),
+          method: :get,
+          class: "btn btn-danger",
+          remote: true
+      %>
+    </div>
+  </div>
+</div>

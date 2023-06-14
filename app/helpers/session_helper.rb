@@ -2,6 +2,7 @@ module SessionHelper
   def log_in(user)
     session[:user_id] = user.id
     session[:user_type] = user.type_account 
+    session[:cart] = []
   end
 
   def current_user

@@ -49,7 +49,7 @@
       <% end %>
 
           <%= f.label :image %>
-      <%= f.text_field :image, class: 'form-control' %>
+      <%= f.text_area :image, class: 'form-control' %>
       <% if @books.errors.has_key?(:price) %>
         <div class="error">
           <%= @books.errors[:image].first %>
