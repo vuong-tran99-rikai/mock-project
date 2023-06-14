@@ -2,6 +2,7 @@ module SessionHelper
   def log_in(user)
     session[:user_id] = user.id
     session[:user_type] = user.type_account 
+    session[:cart] = []
   end
 
   def current_user
@@ -44,6 +45,7 @@ module SessionHelper
   def log_out
     forget(current_user)
     session.delete(:user_id)
+    session.delete(:user_type)
     @current_user = nil
   end
 end

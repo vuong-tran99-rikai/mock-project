@@ -1,0 +1,26 @@
+<div>
+  <%= button_to "Giỏ hàng", "/cart", method: :get, class: "btn btn-warning" %>
+</div>
+<div class="container_grid">
+  <% @books.each do |book| %>
+    <div class="box">
+      <!-- <a href="http://localhost:3000">
+        <%= image_tag book.image, class: 'img_book_home'%>
+      </a> -->
+      <%= link_to image_tag(book.image, class: 'img_book_home'), detail_path(book), data: { turbolinks: false } %>
+      <div class="description_book">
+        <div><%= book.name_book %></div>
+        <div>Tác giả: <%= book.author %></div>
+        <div>Giá: <%= book.price %> đ</div>
+      </div>
+      <%= button_to "Thêm",
+        add_item_path(book.id),
+        method: :get,
+        class: "btn btn-success",
+        remote: true
+      %>
+
+    </div>
+  <% end %> 
+</div>
+
