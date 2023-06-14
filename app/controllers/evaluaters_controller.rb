@@ -6,15 +6,20 @@ class EvaluatersController < ApplicationController
   def create
     @evaluater = Evaluater.new(evaluater_params)
     if @evaluater.save
-      redirect_to @evaluater, notice: 'Đã thêm mới đánh giá'
+      flash[:success] = "Đã thêm mới đánh giá"
+      redirect_to "/create-evaluater"
     else
       render :new
     end
   end
 
+  def index
+    @evaluater = Evaluater.all
+  end
+
   private
 
   def evaluater_params
-    params.require(:evaluater).permit(:book_id, :level, :user_id)
+    params.require(:evaluater).permit(:book_id, :level, :comment, :user_id)
   end
 end

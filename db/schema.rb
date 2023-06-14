@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2023_06_08_094834) do
     t.integer "book_id"
     t.integer "level"
     t.integer "user_id"
+    t.string "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -88,4 +89,6 @@ ActiveRecord::Schema.define(version: 2023_06_08_094834) do
 
   add_foreign_key "discount_details", "books"
   add_foreign_key "discount_details", "discounts"
+  add_foreign_key "evaluaters", "books"
+  add_foreign_key "evaluaters", "users"
 end

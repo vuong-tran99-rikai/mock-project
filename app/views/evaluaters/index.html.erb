@@ -1,0 +1,29 @@
+<% provide(:title, 'Danh sách đánh giá') %>
+  <h1>Danh sách đánh giá</h1>
+  <div style="text-align:right">
+   <div class="col-md-6 col-md-offset-3">
+    <span><%= link_to "Create Evaluater", "/create-evaluater" %></span>
+    </div>
+  </div>
+<table>
+  <thead>
+    <tr>
+      <th>STT</th>
+      <th>Sách</th>
+      <th>Mức đánh giá</th>
+      <th>Người đánh giá</th>
+      <th>Bình luận</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @evaluater.each_with_index do |evaluater, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= evaluater.book.name_book %></td>
+        <td><%= evaluater.level %> sao</td>
+        <td><%= evaluater.user.name %></td>
+        <td><%= evaluater.comment %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

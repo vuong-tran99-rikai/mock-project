@@ -1,14 +1,33 @@
-<h1>New Evaluater</h1>
+<% provide(:title, 'Đánh giá sách') %>
+<h1>Đánh giá sách</h1>
+<div class="row">
+  <div style="text-align:right">
+   <div class="col-md-6 col-md-offset-3">
+    <span><%= link_to "Evaluater list", "/evaluaters" %></span>
+    </div>
+  </div>
+  <div class="col-md-6 col-md-offset-3">
+      <%= form_for(@evaluater) do |form| %>
+      <%= form.label :book_id %>
+      <%= form.select :book_id, options_for_select(Book.pluck(:name_book, :id)) %>
 
-<%= form_for(@evaluater, url: evaluaters_path) do |form| %>
-  <%= form.label :book_id %>
-  <%= form.select :book_id, options_for_select(Book.pluck(:name_book, :id)) %>
+      <%= form.label :level %>
+      <%= form.select :level, options_for_select((1..5).map { |i| ["#{i} sao", i] }) %>
+      <% if @evaluater.errors.has_key?(:level) %>
+        <div class="error">
+          <%= @evaluater.errors[:level].first %>
+        </div>
+      <% end %>
+      
+      <%= form.label :comment %>
+      <%= form.text_field :comment, class: 'form-control' %>
+      <%= @evaluater.errors[:comment].first %>
 
-  <%= form.label :level %>
-  <%= form.number_field :level %>
+      <%= form.label :user_id %>
+      <span><%= current_user.name %></span>
+      <%= form.hidden_field :user_id, value: current_user.id %>
 
-  <%= form.label :user_id %>
-  <%= form.select :user_id, options_for_select(User.pluck(:name, :id)) %>
-
-  <%= form.submit 'Create Evaluater' %>
-<% end %>
+      <%= form.submit 'Create Evaluater', class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
