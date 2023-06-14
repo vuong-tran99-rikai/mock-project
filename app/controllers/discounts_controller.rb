@@ -19,6 +19,7 @@ class DiscountsController < ApplicationController
         @discounts = Discount.where(status: [0, 1])
         current_date = Date.current
         if(@discounts)
+            @hihi = DiscountDetail
             @discounts = Discount.where(status: [0, 1]).order(:id)
             @discounts.each do |discount|
                 if discount.start_day <= current_date && discount.end_day >= current_date
@@ -43,6 +44,9 @@ class DiscountsController < ApplicationController
     end
     def edit
         @discount = Discount.find(params[:id])
+        # unless @discount.present?
+        #     redirect_to '/discount', flash: { danger: 'Không tồn tại' }
+        # end
     end
     def update
         @discount = Discount.find(params[:id])

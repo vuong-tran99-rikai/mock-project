@@ -10,6 +10,7 @@
       <th>End day</th>
       <th>Status</th>
       <th>Action</th>
+      <th>Discount_detail</th>
       <!-- Các cột khác (nếu có) -->
     </tr>
   </thead>
@@ -25,6 +26,7 @@
         </td>
         <td><%= button_to "delete",discount_destroy_path(discount.id), method: :get, class: 'toggle-status-button', remote: true%><%= button_to "edit", discount_edit_path(discount),method: :get %></td>
         <!-- Các cột khác (nếu có) -->
+        <td><%= button_to "Xem chi tiết", discount_detail_seen_path(discount.id),method: :get %></td>
       </tr>
     <% end %>
   </tbody>

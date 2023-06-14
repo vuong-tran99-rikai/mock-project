@@ -34,7 +34,7 @@
   </div>
   <div>
 <%= form.label :status %>
-<select name="books[status]" class="custom-select">
+<select name="book[status]" class="custom-select">
   <% Book.statuses.each do |key, value| %>
     <% if [0, 1].include?(value) %>
       <% selected = (@books.status.to_i == value) ? 'selected' : '' %>

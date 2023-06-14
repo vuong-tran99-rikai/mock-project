@@ -52,7 +52,7 @@ class CategoriesController < ApplicationController
     end
     
     def edit
-        @category = Category.where(status: [0, 1]).find(params[:id])
+        @category = Category.where(status: [0, 1]).find_by(id: params[:id])
         # byebug
         unless @category.present?
             redirect_to '/category', flash: { danger: 'Không tồn tại' }

@@ -1,0 +1,23 @@
+<% provide(:title, 'List discounts') %>
+<h1>List Book Discount</h1>
+<table class="custom-table">
+  <thead>
+    <tr>
+      <%# <th>STT</th> %>
+      <th>Name Sách</th>
+      <th>Action</th>
+    
+      <!-- Các cột khác (nếu có) -->
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |name_book| %>
+      <tr>
+        <td><%= name_book.name_book %></td>
+        <td>
+          <%= link_to "delete", discount_detail_destroy_path(book_id: name_book.id), class: 'toggle-status-button btn btn-primary' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
