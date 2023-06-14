@@ -40,4 +40,7 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   get '/logout', to: 'session#destroy'
   get '/convert_status/:id', to: 'users#convert_status', as: 'convert_status'
+
+  get '/detail/:id', to: 'pages#show', as: 'detail'
+  get '/add_item/:id', to: 'pages#add_item', as: 'add_item'
 end
