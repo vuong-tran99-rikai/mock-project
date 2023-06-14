@@ -4,6 +4,7 @@ class CreateEvaluaters < ActiveRecord::Migration[6.1]
       t.integer :book_id
       t.integer :level
       t.integer :user_id
+      t.string  :comment
       t.timestamps
     end
 

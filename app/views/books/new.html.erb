@@ -1,8 +1,10 @@
 <% provide(:title, 'Create Book') %>
 <h1>Create Book</h1>
-
-   <span><%= link_to "Books list", "/books" %></span>
-
+ <div style="text-align:right">
+   <div class="col-md-6 col-md-offset-3">
+    <span><%= link_to "Books list", "/books" %></span>
+    </div>
+  </div>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@books) do |f| %>
@@ -63,7 +65,7 @@
       <% end %>
       
       <%= f.label :status %>
-      <%= f.select :status, { "Hiển thị" => "1", "Tạm tắt" => "0" }, { prompt: 'Chọn trạng thái' }, class: 'form-control' %>
+      <%= f.select :status, { "Hiển thị" => "1", "Tạm tắt" => "0" }, class: 'form-control' %>
       <% if @books.errors.has_key?(:status) %>
         <div class="error">
           <%= @books.errors[:status].first %>
