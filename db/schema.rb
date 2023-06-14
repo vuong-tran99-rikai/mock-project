@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 2023_06_08_094834) do
 
   create_table "discount_details", force: :cascade do |t|
     t.bigserial "book_id", null: false
-    t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigserial "discount_id", null: false

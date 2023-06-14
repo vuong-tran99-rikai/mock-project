@@ -2,7 +2,6 @@ class CreateDiscountDetails < ActiveRecord::Migration[6.1]
   def change
     create_table :discount_details do |t|
       t.bigserial :book_id
-      t.integer :status
       t.timestamps
     end
     add_column :discount_details, :discount_id, :bigserial

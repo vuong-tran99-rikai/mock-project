@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :books
   resources :evaluaters
   resources :discounts
+  resources :discount_details
 
   get '/create-categories', to: 'categories#new'
   post '/create-categories', to: 'categories#create'
@@ -34,6 +35,14 @@ Rails.application.routes.draw do
   get '/toggle_status_discount/:id', to: 'discounts#toggle_status', as: 'toggle_status_discount'
   get '/discount-destroy/:id', to: 'discounts#destroy', as: 'discount_destroy'
   get '/discount-edit/:id', to: 'discounts#edit', as:'discount_edit'
+  
+
+  get 'add-discount', to: 'discount_details#new'
+  get 'add-discount', to: 'discount_details#create'
+  get '/discount-detail-seen/:id', to: 'discount_details#edit', as:'discount_detail_seen'
+  get '/discount-detail-destroy/:id', to: 'discount_details#destroy', as:'discount_detail_destroy'
+
+
 
   get '/login', to: 'session#new'
   post '/login', to: 'session#create'
