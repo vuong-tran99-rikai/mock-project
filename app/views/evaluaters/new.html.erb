@@ -1,16 +1,13 @@
 <% provide(:title, 'Đánh giá sách') %>
 <h1>Đánh giá sách</h1>
 <div class="row">
-  <div style="text-align:right">
-   <div class="col-md-6 col-md-offset-3">
-    <span><%= link_to "Evaluater list", "/evaluaters" %></span>
-    </div>
-  </div>
-  <div class="col-md-6 col-md-offset-3">
-      <%= form_for(@evaluater) do |form| %>
-      <%= form.label :book_id %>
-      <%= form.select :book_id, options_for_select(Book.pluck(:name_book, :id)) %>
-
+  <div class="col-md-6 col-md-offset-3">  
+    <%= form_for(@evaluater) do |form| %>
+      <div class="evaluater_image">
+        <%= link_to image_tag(@book.image, class: 'img_book_home', alt: @book.name_book), detail_path(@book), data: { turbolinks: false } %>
+      </div>
+      <div class="evaluater_book_name"><%= @book.name_book %></div>
+      <%= form.hidden_field :book_id, value: @book.id %>
       <%= form.label :level %>
       <%= form.select :level, options_for_select((1..5).map { |i| ["#{i} sao", i] }) %>
       <% if @evaluater.errors.has_key?(:level) %>
@@ -20,14 +17,14 @@
       <% end %>
       
       <%= form.label :comment %>
-      <%= form.text_field :comment, class: 'form-control' %>
+      <%= form.text_area :comment, class: 'form-control' %>
       <%= @evaluater.errors[:comment].first %>
 
       <%= form.label :user_id %>
       <span><%= current_user.name %></span>
       <%= form.hidden_field :user_id, value: current_user.id %>
 
-      <%= form.submit 'Create Evaluater', class: "btn btn-primary" %>
+      <%= form.submit 'Đánh giá sách', class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

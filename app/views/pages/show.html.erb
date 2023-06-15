@@ -11,6 +11,7 @@
       <div class="detail_author">Tác giả: <%= @book.author %></div>
       <div class="detail_quantity">Số lượng: <%= @book.quantity %></div>
       <%= number_field :quantity, class: 'form-control' %>
+      <%= link_to "Đánh giá", create_evaluaters_path(@book.id)  %>
       <%= button_to "Thêm",
           add_item_path(@book.id),
           method: :get,

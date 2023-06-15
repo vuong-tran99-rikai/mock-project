@@ -11,6 +11,10 @@ class PagesController < ApplicationController
     @cart = session[:cart]
   end
 
+  def create
+    
+  end
+
   def add_item
     @book = Book.find(params[:id])
     redirect_to root_url

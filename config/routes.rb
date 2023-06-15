@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/create-books', to: 'books#new'
   post '/create-books', to: 'books#create'
 
-  get '/create-evaluater', to: 'evaluaters#new'
+  get '/create-evaluater/:id', to: 'evaluaters#new' ,as: "create_evaluaters"
   post '/create-evaluater', to: 'evaluaters#create'
 
   get '/books-destroy/:id', to: 'books#destroy', as: 'books_destroy'
@@ -43,4 +43,5 @@ Rails.application.routes.draw do
 
   get '/detail/:id', to: 'pages#show', as: 'detail'
   get '/add_item/:id', to: 'pages#add_item', as: 'add_item'
+  get '/cart', to: 'pages#cart'
 end
