@@ -2,7 +2,8 @@
 <div class="center jumbotron">
   <% if logged? %>
     <% if admin_user? %>
-      <%= render 'admin' %>
+      <!-- <%= render 'admin' %> -->
+      <%= render 'customer' %>
     <% else %>
       <%= render 'customer' %>
     <% end %>

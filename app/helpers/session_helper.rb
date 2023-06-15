@@ -48,4 +48,6 @@ module SessionHelper
     session.delete(:user_type)
     @current_user = nil
   end
+
+  
 end

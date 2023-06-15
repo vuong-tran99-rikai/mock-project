@@ -22,10 +22,10 @@ require 'faker'
 # end
 
 99.times do |n|
-  name = Faker::Name.name,
-  description = "example-#{n + 1}"
-  author = 'NNN'
-  img = 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png'
+  name = Faker::Book.title
+  description = Faker::Lorem.paragraph
+  author = Faker::Book.author
+  img = 'https://toplist.vn/images/800px/khong-gia-dinh-hector-malot-441164.jpg'
   Book.create!(name_book: name,
                description: description,
                author: author,
