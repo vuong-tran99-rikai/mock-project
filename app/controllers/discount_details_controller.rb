@@ -22,22 +22,45 @@ class DiscountDetailsController < ApplicationController
           discount_id = params[:discount_detail][:discount_id]
           conflicting_book_ids = []
 
+          # selected_book_id.each do |book_id|
+          #   current_discount = Discount.find_by(id: discount_id)
+          #   existing_discount_detail = DiscountDetail.find_by(book_id: book_id)
+
+          #   if existing_discount_detail && current_discount
+          #     existing_discount = Discount.find(existing_discount_detail.discount_id)
+          #     # byebug
+          #     if (existing_discount.start_day <= current_discount.start_day && existing_discount.end_day >= current_discount.start_day) ||
+          #       (existing_discount.start_day <= current_discount.end_day && existing_discount.end_day >= current_discount.end_day)
+          #       conflicting_book_ids << book_id
+          #     else
+          #       DiscountDetail.create(book_id: book_id, discount_id: discount_id)
+          #     end
+          #   else
+          #     DiscountDetail.create(book_id: book_id, discount_id: discount_id)
+          #   end
+          # end
           selected_book_id.each do |book_id|
             current_discount = Discount.find_by(id: discount_id)
-            existing_discount_detail = DiscountDetail.find_by(book_id: book_id)
-
-            if existing_discount_detail && current_discount
-              existing_discount = Discount.find(existing_discount_detail.discount_id)
-              if (existing_discount.start_day <= current_discount.start_day && existing_discount.end_day >= current_discount.start_day) ||
-                (existing_discount.start_day <= current_discount.end_day && existing_discount.end_day >= current_discount.end_day)
-                conflicting_book_ids << book_id
-              else
-                DiscountDetail.create(book_id: book_id, discount_id: discount_id)
+            existing_discount_details = DiscountDetail.where(book_id: book_id)
+          
+            if existing_discount_details.present? && current_discount.present?
+              existing_discounts = existing_discount_details.map(&:discount)
+          
+              existing_discounts.each do |existing_discount|
+                if (existing_discount.start_day <= current_discount.start_day && existing_discount.end_day >= current_discount.start_day) ||
+                   (existing_discount.start_day <= current_discount.end_day && existing_discount.end_day >= current_discount.end_day)
+                  conflicting_book_ids << book_id
+                  break
+                else
+                  DiscountDetail.create(book_id: book_id, discount_id: discount_id)
+                end
               end
             else
               DiscountDetail.create(book_id: book_id, discount_id: discount_id)
             end
           end
+          
+          
 
           if conflicting_book_ids.any?
             conflicting_book_names = Book.where(id: conflicting_book_ids).pluck(:name_book)
@@ -57,15 +80,51 @@ class DiscountDetailsController < ApplicationController
         # discount_id = @discount.id
         # @books = Book.joins(discount_detail: :discount).where(discount_detail: { discount_id: discount_id })
 
-        @discount = Discount.find(params[:id])
-        # discount_id = @discount.id
-        @books = @discount.books
+        @discounts = Discount.find(params[:id])
+        @books = @discounts.books.where(status: [0, 1])
         # byebug
+        @discount_detail = @discounts.discount_detail
+        @discount_book_ids = @discount_detail.pluck(:book_id)
 
-        # @book_names = discount_details.map { |discount_detail| discount_detail.book.name_book }
-      
-        # Debugging code (byebug)
-        # byebug
+        @bookEdit = Book.where.not(id: @discount_book_ids).where(status: [0, 1])
+      end
+
+      def update
+        @discounts = Discount.find(params[:id])
+        
+        selected_book_id = params[:discount_detail][:book_id]
+          discount_id = params[:discount_detail][:discount_id]
+          conflicting_book_ids = []
+
+          selected_book_id.each do |book_id|
+            current_discount = Discount.find_by(id: @discounts.id)
+            existing_discount_details = DiscountDetail.where(book_id: book_id)
+          
+            if existing_discount_details.present? && current_discount.present?
+              existing_discounts = existing_discount_details.map(&:discount)
+          
+              existing_discounts.each do |existing_discount|
+                if (existing_discount.start_day <= current_discount.start_day && existing_discount.end_day >= current_discount.start_day) ||
+                   (existing_discount.start_day <= current_discount.end_day && existing_discount.end_day >= current_discount.end_day)
+                  conflicting_book_ids << book_id
+                  break
+                else
+                  DiscountDetail.create(book_id: book_id, discount_id: @discounts.id)
+                end
+              end
+            else
+              DiscountDetail.create(book_id: book_id, discount_id: @discounts.id)
+            end
+          end
+
+          if conflicting_book_ids.any?
+            conflicting_book_names = Book.where(id: conflicting_book_ids).pluck(:name_book)
+            flash[:error] = "Lỗi: Sách đã thuộc khuyến mãi khác trong khoảng thời gian cho sách: #{conflicting_book_names.join(', ')}"
+            redirect_to '/add-discount' and return
+          end
+
+          flash[:success] = 'Uơdate thành công'
+          redirect_to request.referrer
       end
 
       def destroy
