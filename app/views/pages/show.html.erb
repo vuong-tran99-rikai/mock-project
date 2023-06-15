@@ -5,6 +5,7 @@
   <div class="detail_book_right">
     <div class="detail_content">
       <div class="detail_name"><%= @book.name_book %></div>
+      <div class="detail_id"><%= @book.id %></div>
       <div class="detail_price"><%= @book.price %> đ</div>
       <div class="detail_title_description">Mô tả:</div>
       <div class="detail_description"><%= @book.description %></div>
@@ -18,6 +19,22 @@
           class: "btn btn-danger",
           remote: true
       %>
+      <% @evaluaters.each do |evaluater| %>
+        <div class="comment">
+          <p class="comment-text"><%= evaluater.user.name %></p>
+          <p class="comment-text"><%= evaluater.comment %></p>
+          <div class="stars">
+            <% evaluater.level.times do |n| %>
+              <span class="star">&#9733;</span>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      
     </div>
+    
   </div>
 </div>
+
+
+

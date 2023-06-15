@@ -33,6 +33,6 @@ require 'faker'
                price: 100000,
                image: img,
                category_id: 1,
-               status: 0
+               status: 1
               )
 end
