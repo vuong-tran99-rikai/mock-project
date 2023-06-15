@@ -4,7 +4,7 @@ class DiscountDetailsController < ApplicationController
         @addDiscount = DiscountDetail.new
         @books = Book.where(status: [1]).where("quantity > 0")
         @discount = Discount.all
-      end
+    end
       
       def create
 

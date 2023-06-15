@@ -468,3 +468,38 @@ td {
   margin: 12px 0px;
   color: green;
 }
+
+.comment {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+}
+
+.comment-text {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.stars {
+  display: inline-block;
+  font-size: 24px;
+}
+
+.star {
+  color: #ffcc00;
+  margin-right: 5px;
+}
+
+.price_discount {
+  font-size: 16px;
+  color: red;
+}
+
+.price {
+  font-size: 16px;
+}
+
+.price_current {
+  font-size: 16px;
+  text-decoration: line-through;
+}

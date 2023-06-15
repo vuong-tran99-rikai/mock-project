@@ -1,10 +1,12 @@
 class PagesController < ApplicationController
   def home
     @books = Book.all
+    @books_discount = DiscountDetail.all
   end
 
   def show
     @book = Book.find(params[:id])
+    @evaluaters = Evaluater.where(book_id: @book.id)
   end
 
   def cart
