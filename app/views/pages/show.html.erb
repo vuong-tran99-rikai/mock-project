@@ -5,8 +5,13 @@
   <div class="detail_book_right">
     <div class="detail_content">
       <div class="detail_name"><%= @book.name_book %></div>
-      <div class="detail_id"><%= @book.id %></div>
-      <div class="detail_price"><%= @book.price %> đ</div>
+      <div class="detail_id">ID: <%= @book.id %></div>
+      <div class="price_info">
+        <div>Giá: </div>
+        <div class="price_discount"><%= @book.display_price[:discount] %></div>
+        <div class="price_current"><%= @book.display_price[:current] %></div>
+        <div>đ</div>
+      </div>
       <div class="detail_title_description">Mô tả:</div>
       <div class="detail_description"><%= @book.description %></div>
       <div class="detail_author">Tác giả: <%= @book.author %></div>

@@ -490,16 +490,19 @@ td {
   margin-right: 5px;
 }
 
+.price_info {
+  display: flex;
+  align-items: center;
+}
+
 .price_discount {
   font-size: 16px;
   color: red;
-}
-
-.price {
-  font-size: 16px;
+  margin-left: 12px;
 }
 
 .price_current {
   font-size: 16px;
   text-decoration: line-through;
+  margin: 0px 4px 0px 8px;
 }
