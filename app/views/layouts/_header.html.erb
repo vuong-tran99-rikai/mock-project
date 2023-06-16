@@ -4,6 +4,7 @@
        <nav>
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Home", root_path %></li>
+            <li><%= link_to "Discount Book", book_discounts_path %>
             <% if logged? %>
                <% if admin_user? %>
                   <li><%= link_to "Categories", create_categories_path  %></li>

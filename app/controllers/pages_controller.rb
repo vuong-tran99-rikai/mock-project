@@ -1,7 +1,16 @@
 class PagesController < ApplicationController
   def home
-    @books = Book.where(status: 1).order(:id)
-    @books_discount = DiscountDetail.all
+    
+    if params[:search].present?
+      @books = Book.where("name_book LIKE ?", "%#{params[:search]}%").order(:id)
+      @category = Category.where(status: 1)
+      @books_discount = DiscountDetail.all
+    else
+      @category = Category.where(status: 1)
+      @books = Book.where(status: 1).order(:id)
+      @books_discount = DiscountDetail.all
+    end
+  
   end
 
   def show

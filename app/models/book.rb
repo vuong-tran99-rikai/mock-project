@@ -13,6 +13,7 @@ class Book < ApplicationRecord
     validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
     validates :category_id, presence: true
     enum status: { 'Tạm tắt': 0, 'Hiển thị': 1, delete_book: 2, daxoa: 3 }
+    attribute :name_book, :string
 
     def display_price
         discounts.each do |discount|

@@ -48,9 +48,15 @@ class CategoriesController < ApplicationController
     end
     def destroy
         @category = Category.find(params[:id])
-        @category.status = 2
-        @category.save
-        redirect_to '/category'
+        @books = @category.books.where(status: 1)
+        
+        if @books.exists?
+          @category.update(status: 2)
+          @books.update_all(status: 2)
+          redirect_to '/category'   
+        else
+          redirect_to '/category', notice: 'Không có sách thỏa mãn điều kiện'
+        end
     end
     
     def edit

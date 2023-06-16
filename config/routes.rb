@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :evaluaters
   resources :discounts
   resources :discount_details
+  resources :book_discounts
   
   
   get '/create-books', to: 'books#new'
