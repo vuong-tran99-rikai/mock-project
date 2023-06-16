@@ -1,4 +1,5 @@
 class DiscountDetailsController < ApplicationController
+    before_action :admin_user, only: [:new, :create, :destroy, :edit]
     # before_action :param_detail, only: %i[create]
     def new
         @addDiscount = DiscountDetail.new

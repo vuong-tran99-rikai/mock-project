@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+    before_action :admin_user, only: [:new, :create, :update, :destroy, :show, :toggle_status, :edit]
+
     def new
         @categories = Category.new
     end

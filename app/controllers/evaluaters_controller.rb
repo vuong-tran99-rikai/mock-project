@@ -1,4 +1,6 @@
 class EvaluatersController < ApplicationController
+  before_action :admin_user, only: [:new, :create, :index]
+
   def new
     @evaluater = Evaluater.new
     @book = Book.find(params[:id])
