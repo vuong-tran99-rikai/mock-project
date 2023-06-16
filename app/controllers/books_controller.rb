@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  before_action :admin_user, only: [:new, :create, :update, :destroy, :index, :toggle_status_book, :edit]
+
   protect_from_forgery with: :exception
 
   def new

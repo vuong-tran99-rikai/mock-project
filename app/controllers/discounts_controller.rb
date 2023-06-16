@@ -1,5 +1,6 @@
 require 'date'
 class DiscountsController < ApplicationController
+    before_action :admin_user, only: [:new, :create, :update, :destroy, :show, :edit]
     def new
         @discounts = Discount.new
     end

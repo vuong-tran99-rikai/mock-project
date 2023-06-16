@@ -30,6 +30,11 @@ module SessionHelper
     return false
   end
 
+  def admin_user
+    return true if admin_user?
+    redirect_to(root_url)
+  end
+
   def remember(user)
     user.remember
     cookies.permanent.signed[:user_id] = user.id
@@ -45,7 +50,7 @@ module SessionHelper
   def log_out
     forget(current_user)
     session.delete(:user_id)
-    session.delete(:user_type)
+    session[:user_type] = 0
     @current_user = nil
   end
 

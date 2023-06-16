@@ -1,5 +1,5 @@
 <td scope="row"><%= user.id %></td>
-<td><%= link_to user.name, user %></td>
+<td><%= link_to user.name, edit_user_path(user) %></td>
 <td><%= user.email %></td>
 <td><%= user.type_account.to_s.humanize %></td>
 <td>
