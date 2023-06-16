@@ -15,6 +15,8 @@ gem 'will_paginate'
 gem 'active_storage_validations', '1.0.3'
 gem 'bcrypt', '~> 3.1.7'
 gem 'htmlbeautifier'
+gem 'responders'
+
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
@@ -36,6 +38,7 @@ gem 'jbuilder', '~> 2.7'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'jquery-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

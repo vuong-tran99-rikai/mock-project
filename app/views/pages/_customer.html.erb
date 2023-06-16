@@ -16,14 +16,12 @@
         </div>
       </div>
       <%= button_to "Thêm",
-        add_item_path(book.id),
+        add_to_cart_invoices_path(book_id: book.id),
         method: :get,
         disabled: (book.quantity < 1) ? true : false,
         class: "btn btn-success",
         remote: true
       %>
-
     </div>
   <% end %> 
 </div>
-
