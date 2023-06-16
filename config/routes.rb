@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'cart', to: 'invoices#cart', as: 'cart'
   root 'pages#home'
   resources :users
   resources :categories
@@ -45,7 +46,18 @@ Rails.application.routes.draw do
   # post '/discount-detail-update', to: 'discount_details#update', as:'discount_detail_update'
 
 
+  resources :invoices do
+    collection do
+      get 'add_to_cart/:book_id', action: 'add_to_cart', as: 'add_to_cart'
+      post 'handle_quantity/:book_id', action: 'handle_quantity', as: 'handle_quantity'
+    end
+  end
+  
+  get '/remove_item/:book_id', to: 'invoices#remove_item', as: 'remove_item'
 
+  post 'reduce_quantity', to: 'invoices#reduce_quantity', as: 'reduce_quantity'
+  post 'add_quantity', to: 'invoices#add_quantity', as: 'add_quantity'
+  
 
   get '/login', to: 'session#new'
   post '/login', to: 'session#create'
