@@ -8,7 +8,12 @@
       <div class="description_book">
         <div><%= book.name_book %></div>
         <div>Tác giả: <%= book.author %></div>
-        <div class="price">Giá: <%= book.display_price %> đ</div>
+        <div class="price_info">
+          <div>Giá: </div>
+          <div class="price_discount"><%= book.display_price[:discount] %></div>
+          <div class="price_current"><%= book.display_price[:current] %></div>
+          <div>đ</div>
+        </div>
       </div>
       <%= button_to "Thêm",
         add_item_path(book.id),

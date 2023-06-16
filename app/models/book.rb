@@ -12,10 +12,17 @@ class Book < ApplicationRecord
     enum status: { 'Tạm tắt': 0, 'Hiển thị': 1, delete_book: 2, daxoa: 3 }
 
     def display_price
-        if discounts&.last&.gia_KM
-            return price - (price * discounts&.last&.gia_KM / 100)
-        else
-            return price
+        discounts.each do |discount|
+            if discount.Hiển_thị? 
+                return last_price = {
+                    current: price,
+                    discount: price - (price * discount.gia_KM / 100)
+                }
+            end
         end
+        return last_price = {
+            current: '',
+            discount: price
+        }
     end
 end
