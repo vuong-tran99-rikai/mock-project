@@ -1,3 +1,5 @@
+require 'uri'
+
 class Book < ApplicationRecord
     belongs_to :category
     has_many :discount_details, foreign_key: :book_id
@@ -5,6 +7,7 @@ class Book < ApplicationRecord
     has_many :votes
     validates :name_book, presence: true
     validates :description, presence: true
+    validates :image, format: { with: URI::regexp(%w(http https)), message: "must be a valid image URL" }
     validates :author, presence: true
     validates :quantity, presence: true, numericality: { greater_than_or_equal_to: 0 }
     validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }

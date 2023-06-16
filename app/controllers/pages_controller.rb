@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def home
-    @books = Book.all
+    @books = Book.where(status: 1).order(:id)
     @books_discount = DiscountDetail.all
   end
 
