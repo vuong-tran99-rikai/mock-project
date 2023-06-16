@@ -506,3 +506,37 @@ td {
   text-decoration: line-through;
   margin: 0px 4px 0px 8px;
 }
+
+
+.btn-right {
+  margin-left: auto;
+}
+.search-input {
+  border-color: red;
+  background-color: #f8f8f8;
+  /* Các thuộc tính CSS khác */
+}
+
+.form_search {
+  display: flex;
+
+}
+
+.form-control {
+  height: 100%;
+  margin: 0;
+}
+
+.form-inline {
+  display: flex;
+  justify-content: right;
+}
+
+.container_search {
+  margin: 0 0 12px 0;
+}
+
+
+
+
+
