@@ -7,7 +7,6 @@ class DiscountDetailsController < ApplicationController
     end
       
       def create
-
         # selected_book_id = params[:discount_detail][:book_id]
         # discount_id = params[:discount_detail][:discount_id]
 
@@ -17,7 +16,6 @@ class DiscountDetailsController < ApplicationController
       
         # flash[:success] = 'Create thành công'
         # redirect_to '/add-discount'
-
         selected_book_id = params[:discount_detail][:book_id]
           discount_id = params[:discount_detail][:discount_id]
           conflicting_book_ids = []
@@ -91,7 +89,7 @@ class DiscountDetailsController < ApplicationController
 
       def update
         @discounts = Discount.find(params[:id])
-        
+        # byebug
         selected_book_id = params[:discount_detail][:book_id]
           discount_id = params[:discount_detail][:discount_id]
           conflicting_book_ids = []
