@@ -20,6 +20,7 @@ class InvoicesController < ApplicationController
           quantity: item["quantity"],
           status: 0
         )
+        book.update(quantity: book.quantity - item["quantity"])
         invoice_detail.save
       end
       set_cart_cookie([])
@@ -32,11 +33,16 @@ class InvoicesController < ApplicationController
 
   def add_to_cart
     book_id = params[:book_id]
+    book = Book.find(book_id)
     cart = get_cart_from_cookie || []
     existing_item = cart.find { |item| item["book_id"] == book_id }
 
     if existing_item
-      existing_item["quantity"] += 1
+      if existing_item["quantity"] >= book.quantity
+        flash[:danger] = "Book not enough"
+      else
+        existing_item["quantity"] += 1
+      end
     else
       cart << { "book_id" => book_id, "quantity" => 1 }
     end
@@ -64,10 +70,11 @@ class InvoicesController < ApplicationController
 
   def add_quantity
     book_id = params[:book_id]
+    book = Book.find(book_id)
     @cart = get_cart_from_cookie || []
     item = @cart.find { |item| item["book_id"] == book_id }
 
-    if item
+    if item && item["quantity"] < book.quantity
       item["quantity"] += 1
       set_cart_cookie(@cart)
     end
@@ -95,10 +102,6 @@ class InvoicesController < ApplicationController
 
   def invoice_params
     params.require(:invoice).permit(:phone, :address, :expiry_date, :total_discount, :total_price, :user_id)
-  end
-
-  def get_cart_from_cookie
-    JSON.parse(cookies[:cart]) if cookies[:cart]
   end
 
   def set_cart_cookie(cart)
