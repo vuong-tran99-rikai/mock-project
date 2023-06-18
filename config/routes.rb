@@ -48,6 +48,12 @@ Rails.application.routes.draw do
   # post '/discount-detail-update', to: 'discount_details#update', as:'discount_detail_update'
   # login google
   get '/auth/:provider/callback', to: 'session#omniauth'
+  #thống kê danh sách thuê
+  get '/rental-book-history' , to: 'rentalhistorys#show', as:'rental_book_history'
+  get '/toggle_status_history/:id', to: 'rentalhistorys#toggle_status', as: 'toggle_status_history'
+  get '/history-detail/:id', to: 'rentalhistorys#show_detail', as:'history_detail'
+
+
 
 
   resources :invoices do

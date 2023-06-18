@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
-  has_many :invoices
+  has_many :invoices, foreign_key: :user_id
 
   has_many :votes
   has_many :books, through: :vote

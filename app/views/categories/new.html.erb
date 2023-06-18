@@ -16,7 +16,7 @@
       </select> %>
       
       <%#f.select :status, options_for_select(Category.statuses.map { |key, value| [key, value] if [0, 1].include?(value) }.compact), {}, class: 'custom-select' %>
-
+         <%= f.label :status %>
         <select name="category[status]" class="custom-select">
           <% Category.statuses.each do |key, value| %>
             <% if [0, 1].include?(value) %>
@@ -24,7 +24,7 @@
             <% end %>
           <% end %>
         </select>
-      <%= f.submit "Create Categories", class: "btn btn-primary" %>
+      <%= f.submit "Create Categories", class: "btn btn-primary" ,style: "margin-top : 5px" %>
     <% end %>
   </div>
 </div>

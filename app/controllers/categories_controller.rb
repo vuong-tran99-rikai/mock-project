@@ -26,6 +26,7 @@ class CategoriesController < ApplicationController
     end
     def toggle_status
         @category = Category.find(params[:id])
+        # byebug
             if @category.Close?
                 @category.status = 'Open'
             elsif @category.Open?
@@ -36,16 +37,17 @@ class CategoriesController < ApplicationController
     end
     def destroy
         @category = Category.find(params[:id])
+        # byebug
         @books = @category.books.where(status: 1)
         
         if @books.present?
-          @category.update(status: 2)
-          @books.update_all(status: 2)
-          redirect_to '/category', notice: 'xóa thành công' 
+            @category.update(status: 2)
+            @books.includes(:category).update_all(status: 2)
+            redirect_to '/category', notice: 'xóa thành công' 
         else
-          @category.update(status: 2)
-          redirect_to '/category', notice: 'xóa thành công'
-        end
+            @category.update(status: 2)
+            redirect_to '/category', notice: 'xóa thành công'
+        end          
     end
     
     def edit

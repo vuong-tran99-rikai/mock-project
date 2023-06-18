@@ -94,7 +94,7 @@ class InvoicesController < ApplicationController
   private
 
   def invoice_params
-    params.require(:invoice).permit(:phone, :address, :expiry_date, :total_discount, :total_price, :users_id)
+    params.require(:invoice).permit(:phone, :address, :expiry_date, :total_discount, :total_price, :user_id)
   end
 
   def get_cart_from_cookie

@@ -1,0 +1,31 @@
+<% provide(:title, 'List Category') %>
+<h1>List Category</h1>
+<table class="custom-table">
+  <thead>
+    <tr>
+      <%# <th>STT</th> %>
+      <th>Name user</th>
+      <th>Phone</th>
+      <th>Adress</th>
+      <th>Expiry date</th>
+      <th>Status</th>
+      <th>Action</th>
+      <!-- Các cột khác (nếu có) -->
+    </tr>
+  </thead>
+  <tbody>
+    <% @history.each do |history| %>
+      <tr>
+        <td><%= history.name %></td>
+        <td><%= history.phone %></td>
+        <td><%= history.address %></td>
+        <td><%= history.expiry_date %></td>
+        <td>
+          <%# button_to category.status.to_s.humanize , "/toggle_status/"+ category.id%>
+          <%= button_to history.status.to_s.humanize, toggle_status_history_path(history.id), method: :get, class: 'toggle-status-button', remote: true %>
+        </td>
+        <td><%= button_to "Xem chi tiết", history_detail_path(history.id),method: :get %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

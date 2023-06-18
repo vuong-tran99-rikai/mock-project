@@ -21,9 +21,9 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.where(status: [0, 1])
+    @books = Book.includes(:category).where(status: [0, 1])
     if (@books)
-      @books = Book.where(status: [0, 1]).order(:id)
+      @books = Book.includes(:category).where(status: [0, 1]).order(:id)
     else
       @books = []
     end

@@ -1,0 +1,22 @@
+<% provide(:title, 'List Category') %>
+<h1>List Category</h1>
+<table class="custom-table">
+  <thead>
+    <tr>
+      <%# <th>STT</th> %>
+      <th>Name Book</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <!-- Các cột khác (nếu có) -->
+    </tr>
+  </thead>
+  <tbody>
+    <% @history.each do |history| %>
+      <tr>
+        <td><%= history.book.name_book %></td>
+        <td><%= history.price %></td>
+        <td><%= history.quantity %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
