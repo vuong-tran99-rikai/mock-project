@@ -8,4 +8,15 @@ module InvoicesHelper
     end
     total
   end
+
+  def calculate_total_current(cart)
+    total = 0
+    cart.each do |item|
+      book = Book.find(item["book_id"])
+      price = book.price
+      total += price * item["quantity"]
+    end
+    total
+  end
+
 end

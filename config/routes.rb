@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'bill/new'
   get 'cart', to: 'invoices#cart', as: 'cart'
   root 'pages#home'
   resources :users

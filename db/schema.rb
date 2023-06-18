@@ -62,19 +62,26 @@ ActiveRecord::Schema.define(version: 2023_06_08_094834) do
   end
 
   create_table "invoice_details", force: :cascade do |t|
-    t.string "name"
+    t.integer "invoice_id"
+    t.integer "book_id"
+    t.float "price"
+    t.integer "quantity"
+    t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "invoices", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "book_id"
-    t.integer "quantity", default: 1
+    t.string "users_id"
+    t.string "address"
+    t.string "phone"
+    t.integer "status"
+    t.float "total_price"
+    t.float "total_discount"
+    t.date "expiry_date"
+    t.integer "payment_method"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["book_id"], name: "index_invoices_on_book_id"
-    t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -94,6 +101,4 @@ ActiveRecord::Schema.define(version: 2023_06_08_094834) do
   add_foreign_key "discount_details", "discounts"
   add_foreign_key "evaluaters", "books"
   add_foreign_key "evaluaters", "users"
-  add_foreign_key "invoices", "books"
-  add_foreign_key "invoices", "users"
 end

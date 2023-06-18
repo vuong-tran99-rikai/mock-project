@@ -1,13 +1,8 @@
 <% provide(:title, 'Home') %>
 <div class="center jumbotron">
-  <% if logged? %>
-    <% if admin_user? %>
-      <!-- <%= render 'admin' %> -->
-      <%= render 'customer' %>
-    <% else %>
-      <%= render 'customer' %>
-    <% end %>
+  <% if admin_user? %>
+    <%= render 'admin' %>
   <% else %>
-    <%= button_to "Đăng nhập", "/login", method: :get, class: "btn btn-primary" %>
+    <%= render 'customer' %>
   <% end %>
 </div>
