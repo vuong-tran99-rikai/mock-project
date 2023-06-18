@@ -10,7 +10,7 @@
   <%= f.label 'Địa chỉ:' %>
   <%= f.text_field :address, class: 'form-control' %>
   <%= f.label 'Ngày trả:' %>
-    <%= f.date_field :expiry_date, class: 'form-control' %>
+  <%= f.date_field :expiry_date, class: 'form-control' %>
   <div class="text-right">
     <h5 class="total-price"><strong>Khuyến mãi: -<%= calculate_total_current(@cart) - calculate_total(@cart) %> ₫</strong></h5>
     <h5 class="total-price"><strong>Tổng tiền thuê: <%= calculate_total(@cart) %> ₫</strong></h5>

@@ -19,7 +19,7 @@ class EvaluatersController < ApplicationController
   end
 
   def index
-    @evaluater = Evaluater.all
+    @evaluaters = Evaluater.includes([:book,:user])
   end
 
   private

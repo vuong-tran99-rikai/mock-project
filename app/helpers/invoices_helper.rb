@@ -19,4 +19,8 @@ module InvoicesHelper
     total
   end
 
+  def get_cart_from_cookie
+    JSON.parse(cookies[:cart]) if cookies[:cart]
+  end
+
 end
