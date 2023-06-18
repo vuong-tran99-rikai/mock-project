@@ -17,7 +17,7 @@
   </div>
   <%= f.hidden_field :total_discount, value: calculate_total_current(@cart) - calculate_total(@cart) %>
   <%= f.hidden_field :total_price, value: calculate_total(@cart) %>
-  <%= f.hidden_field :users_id, value: current_user.id %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.submit 'Xác nhận thuê sách', class: "btn btn-danger" %>
 <% end %>
 

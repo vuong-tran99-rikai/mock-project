@@ -23,6 +23,9 @@ gem 'omniauth-rails_csrf_protection'
 #kiểm tra ngày tháng 
 gem 'validates_timeliness'
 
+gem 'bullet', group: 'development'
+
+
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'

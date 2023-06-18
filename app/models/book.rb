@@ -2,6 +2,8 @@ require 'uri'
 
 class Book < ApplicationRecord
     belongs_to :category
+    has_many :invoice_details
+    has_many :invoice, through: :invoice_details
     has_many :discount_details, foreign_key: :book_id
     has_many :discounts, through: :discount_details, foreign_key: :discount_id
     has_many :votes
