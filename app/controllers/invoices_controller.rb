@@ -1,4 +1,35 @@
 class InvoicesController < ApplicationController
+  before_action :logged_in_user, only: [:new, :create]
+
+  def new
+    @invoice = Invoice.new
+    @cart = get_cart_from_cookie || []
+  end
+
+  def create
+    @invoice = Invoice.new(invoice_params.merge!(status: 0))
+    @cart = get_cart_from_cookie
+    if @invoice.save 
+      flash[:info] = "Thuê sách thành công"
+      cart.each do |item|
+        book = Book.find(item["book_id"])
+        invoice_detail = InvoiceDetail.new(
+          invoice_id: @invoice.id,
+          book_id: item["book_id"],
+          price: book.display_price[:discount],
+          quantity: item["quantity"],
+          status: 0
+        )
+        invoice_detail.save
+      end
+      set_cart_cookie([])
+      redirect_to root_url
+    else
+      flash[:error] = "An error has occurred"
+      render 'new'
+    end
+  end
+
   def add_to_cart
     book_id = params[:book_id]
     cart = get_cart_from_cookie || []
@@ -61,6 +92,10 @@ class InvoicesController < ApplicationController
   end
 
   private
+
+  def invoice_params
+    params.require(:invoice).permit(:phone, :address, :expiry_date, :total_discount, :total_price, :users_id)
+  end
 
   def get_cart_from_cookie
     JSON.parse(cookies[:cart]) if cookies[:cart]

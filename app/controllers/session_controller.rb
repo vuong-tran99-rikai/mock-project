@@ -11,23 +11,21 @@ class SessionController < ApplicationController
       render "new"
     else
       user = User.find_by(email: params[:session][:email].downcase)
-      if user.deleted?
-        flash.now[:danger] = "Tài khoản không tồn tại"
-        render "new"
-      else
-        if user.closed?
-          flash.now[:danger] = "Tài khoản của bạn đã bị khóa"
+      if user && user.authenticate(params[:session][:password])
+        if user.deleted?
+          flash.now[:danger] = "Tài khoản không tồn tại"
           render "new"
-        else
-          if user && user.authenticate(params[:session][:password])
-            log_in user
-            remember user
-            redirect_to user
-          else
-            flash.now[:danger] = "Tài khoản hoặc mật khâu không chính xác" # Not quite right!
+        elsif user.closed?
+            flash.now[:danger] = "Tài khoản của bạn đã bị khóa"
             render "new"
-          end
+        else
+          log_in user
+          remember user
+          redirect_to user
         end
+      else
+        flash.now[:danger] = "Tài khoản hoặc mật khâu không chính xác"
+        render "new"
       end
     end
     

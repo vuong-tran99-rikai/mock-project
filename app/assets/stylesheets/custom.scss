@@ -187,7 +187,7 @@ input {
 }
 
 .checkbox {
-  margin-top: -10px;
+  margin-top: 10px;
   margin-bottom: 10px;
 
   span {
@@ -328,9 +328,11 @@ span.image {
 }
 
 .custom-select {
+  width: auto;
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  margin: 0;
 }
 
 .custom-select option {
@@ -401,12 +403,9 @@ td {
     :nth-child(1){
       font-size: 18px;
       font-weight: bold;
-      cursor: pointer;
     }
   }
 }
-
-
 
 .img_book_home {
   max-width: 90%;
@@ -493,6 +492,7 @@ td {
 .price_info {
   display: flex;
   align-items: center;
+  justify-content: left;
 }
 
 .price_discount {

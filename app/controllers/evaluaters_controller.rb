@@ -1,5 +1,6 @@
 class EvaluatersController < ApplicationController
-  before_action :admin_user, only: [:new, :create, :index]
+  before_action :admin_user, only: [:index]
+  before_action :logged_in_user, only: [:new, :create]
 
   def new
     @evaluater = Evaluater.new

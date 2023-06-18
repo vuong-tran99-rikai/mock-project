@@ -5,15 +5,15 @@
     <h5 class="text-center">Giỏ hàng đang rỗng</h5>
   <% else %>
     <div id="cart-table">
-      <table class="table">
+      <table>
         <thead>
           <tr>
-            <th class="text-center">STT</th>
-            <th class="text-center">Ảnh</th>
-            <th class="text-center">Tên sản phẩm</th>
-            <th class="text-center">Số lượng</th>
-            <th class="text-center">Đơn giá</th>
-            <th class="text-center">Thành tiền</th>
+            <th scope="col">STT</th>
+            <th scope="col">Ảnh</th>
+            <th scope="col">Tên sản phẩm</th>
+            <th scope="col">Số lượng</th>
+            <th scope="col">Đơn giá</th>
+            <th scope="col">Thành tiền</th>
             <th></th>
           </tr>
         </thead>
@@ -25,31 +25,32 @@
               <td><%= link_to image_tag(book.image, class: 'img_book_home ' , alt: book.name_book), detail_path(book), data: { turbolinks: false } %></td>
               <td class="text-center" ><%= book.name_book %></td>
               <td class="text-center">
-              
-                <div class="row" >
-                <div style="display: flex; justify-content: center; align-items:center">
+                <div style="display: flex; justify-content: space-around; align-items:center">
                   <div class="col-4">
-                    <%= button_to "-", reduce_quantity_path(book_id: book.id), method: :post, class: "btn btn-sm btn-secondary" %>
+                    <%= button_to "-", reduce_quantity_path(book_id: book.id), method: :post, class: "btn btn-secondary" %>
                   </div>
                   <div class="col-4 text-center">
                     <%= item['quantity'] %>
                   </div>
                   <div class="col-4">
-                    <%= button_to "+", add_quantity_path(book_id: book.id), method: :post, class: "btn btn-sm btn-secondary" %>
-                  </div>
+                    <%= button_to "+", add_quantity_path(book_id: book.id), method: :post, class: "btn btn-secondary" %>
                   </div>
                 </div>
               </td>
               <td class="text-center">
-                <div class="price_info">
-                  <div class="price_discount"><%= book.display_price[:discount] %></div>
-                  <div>&nbsp VNĐ</div>
+                <div>
+                  <div class="price_info">
+                    <div class="price_discount"><%= book.display_price[:discount] %> ₫</div>
+                  </div>
+                  <div class="price_info">
+                    <div class="price_current"><%= book.display_price[:current] %></div>
+                  </div>
                 </div>
               </td>
               <td class="text-center"><%= book.display_price[:discount] * item['quantity'] %></td>
               <td class="text-center">
                 <%= link_to remove_item_path(book_id: book.id), class: 'btn btn-sm btn-danger' do %>
-                  <i class="bi bi-trash">X</i>
+                  <div class="bi bi-trash">X</div>
                 <% end %>
               </td>
             </tr>
@@ -57,44 +58,29 @@
         </tbody>
       </table>
 
+
+
       <div class="text-right">
-        <h5 class="total-price"><strong>Tổng cộng: <%= calculate_total(@cart) %></strong></h5>
-        <button class="btn btn-primary">Thanh toán</button>
+        <h5 class="total-price"><strong>Tạm tính giỏ hàng: <%= calculate_total_current(@cart) %> ₫</strong></h5>
+        <h5 class="total-price"><strong>Tiết kiệm được: -<%= calculate_total_current(@cart) - calculate_total(@cart) %> ₫</strong></h5>
+        <h5 class="total-price"><strong>Thành tiền: <%= calculate_total(@cart) %> ₫</strong></h5>
+        <div class="btn_pay">
+          <%= button_to "Thanh toán",
+            new_invoice_path,
+            method: :get,
+            class: "btn btn-danger",
+            remote: true
+          %>
+        </div>
       </div>
     </div>
   <% end %>
 </div>
 
 <style>
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  h3.text-center {
-    margin-top: 30px;
-    font-size: 24px;
+  table, th, td {
+    border: 1px solid black;
     text-align: center;
-  }
-
-  .table {
-    margin-top: 30px;
-  }
-
-  .table th {
-    font-weight: bold;
-  }
-
-  .table td {
-    vertical-align: middle;
-  }
-
-  .text-center {
-    text-align: center;
-  }
-
-  .text-right {
-    text-align: right;
   }
 
   .img_book_home {
@@ -105,6 +91,7 @@
   .btn-secondary {
     background-color: #ccc;
     color: #000;
+    padding: 0 10px;
   }
 
   .btn-danger {
@@ -123,7 +110,16 @@
   }
   .btn-sm {
     font-size: 10px;
-    width : 100%
-    padding: 10px 5px;
+  }
+
+  .price_info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+  .btn_pay {
+    display: flex;
+    justify-content: end;
   }
 </style>
