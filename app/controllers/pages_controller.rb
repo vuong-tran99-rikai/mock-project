@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   def home
     
     if params[:search].present?
-      @books = Book.where("name_book LIKE ?", "%#{params[:search]}%").order(:id)
+      @books = Book.where("name_book LIKE ?", "%#{params[:search]}%").where(status: 1).order(:id)
       @category = Category.where(status: 1)
       @books_discount = DiscountDetail.all
     else
