@@ -1,7 +1,11 @@
 class PagesController < ApplicationController
   def home
     if params[:search].present?
-      @books = Book.where("LOWER(name_book) LIKE ?", "%#{params[:search].downcase}%").where(status: 1).order(:id)
+      @books = Book.where("name_book LIKE ?", "%#{params[:search]}%")
+             .where(status: 1)
+             .includes(:discounts)
+             .order(:id)
+      # @books = Book.where("LOWER(name_book) LIKE ?", "%#{params[:search].downcase}%").where(status: 1).order(:id)
       @category = Category.where(status: 1)
     else
       @category = Category.where(status: 1)

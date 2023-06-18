@@ -8,7 +8,7 @@
 </div>
 
 <div class="container_grid">
-  <% @book.each do |book| %>
+  <% @books.each do |book| %>
     <div class="box">
       <%= link_to image_tag(book.image, class: 'img_book_home', alt: book.name_book), detail_path(book) %>
       <div class="description_book">
