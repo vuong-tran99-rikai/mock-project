@@ -62,6 +62,12 @@ class BooksController < ApplicationController
     end
   end
 
+def search
+  @books = Book.where("name_book LIKE ?", "%#{params[:search]}%")
+
+  render :index
+end
+
   private
 
   def book_params

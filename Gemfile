@@ -22,6 +22,8 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 #kiểm tra ngày tháng 
 gem 'validates_timeliness'
+gem 'bullet', group: 'development'
+
 
 gem 'bullet', group: 'development'
 
