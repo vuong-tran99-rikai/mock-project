@@ -22,7 +22,7 @@ class RentalhistorysController < ApplicationController
       end
       def show_detail
         @invoice = Invoice.find(params[:id])
-        @history = @invoice.invoice_details
+        @history = @invoice.invoice_details.includes([:book])
         # byebug
       end
 end

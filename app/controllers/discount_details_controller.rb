@@ -75,7 +75,7 @@ class DiscountDetailsController < ApplicationController
         
             existing_discounts.each do |existing_discount|
               if (existing_discount.start_day <= current_discount.start_day && existing_discount.end_day >= current_discount.start_day) ||
-                 (existing_discount.start_day <= current_discount.end_day && existing_discount.end_day >= current_discount.end_day || existing_discount.start_day >= current_discount.start_day && existing_discount.end_day <= current_discount.end_day)
+                 (existing_discount.start_day <= current_discount.end_day && existing_discount.end_day >= current_discount.end_day )|| (existing_discount.start_day >= current_discount.start_day && existing_discount.end_day <= current_discount.end_day)
                 conflicting_book_ids << book_id
                 break
               else
