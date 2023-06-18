@@ -10,5 +10,4 @@ class Invoice < ApplicationRecord
   validates :address, presence: true
   validates :phone, presence: true
   validates :expiry_date, presence: true
-  
 end

@@ -1,10 +1,17 @@
 <% provide(:title, 'All Books') %>
 <h1>All Books</h1>
- <div style="text-align:right">
-   <div class="col-md-6 col-md-offset-3">
-   <span><%= link_to "Create Books", "/create-books" %></span>
-    </div>
+
+<div style="text-align:right">
+  <div class="col-md-6 col-md-offset-3">
+    <span><%= link_to "Create Books", "/create-books" %></span>
   </div>
+</div>
+
+<%= form_tag search_books_path, method: :get do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Tìm kiếm sách" %>
+  <%= submit_tag "Tìm kiếm" %>
+<% end %>
+
 <table id="books-table" class="display">
   <thead>
     <tr>
@@ -13,7 +20,7 @@
       <th>Author</th>
       <th>Quantity</th>
       <th>Price</th>
-      <th>image</th>
+      <th>Image</th>
       <th>Category</th>
       <th>Status</th>
       <th>Actions</th>
@@ -26,16 +33,16 @@
         <td><%= book.description %></td>
         <td><%= book.author %></td>
         <td><%= book.quantity %></td>
-        <td><%= book.price%></td>
-        <td><%= book.image%></td>
+        <td><%= book.price %></td>
+        <td><%= image_tag book.image, class: 'book-image', style: 'width: 70%' %></td>
         <td><%= book.category.name_category %></td>
-           <td>
-  <%= button_to book.status.to_s.humanize, toggle_status_book_path(book.id), method: :get, class: 'toggle-status-button', remote: true %>
+        <td>
+          <%= button_to book.status.to_s.humanize, toggle_status_book_path(book.id), method: :get, class: 'toggle-status-button', remote: true %>
         </td>
-       <td>
-  <%= button_to "delete", books_destroy_path(book.id), method: :get, class: 'toggle-status-button', remote: true %>
-  <%= button_to "edit", books_edit_path(book), method: :get %>
-</td>
+        <td>
+          <%= button_to "delete", books_destroy_path(book.id), method: :get, class: 'toggle-status-button', remote: true %>
+          <%= button_to "edit", books_edit_path(book), method: :get %>
+        </td>
       </tr>
     <% end %>
   </tbody>

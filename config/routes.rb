@@ -67,7 +67,10 @@ Rails.application.routes.draw do
 
   post 'reduce_quantity', to: 'invoices#reduce_quantity', as: 'reduce_quantity'
   post 'add_quantity', to: 'invoices#add_quantity', as: 'add_quantity'
-  
+  get 'search_books', to: 'books#search', as: 'search_books'
+
+  get '/revenue', to: 'invoices#revenue', as: 'revenue'
+
 
   get '/login', to: 'session#new'
   post '/login', to: 'session#create'

@@ -1,5 +1,7 @@
 class InvoicesController < ApplicationController
   before_action :logged_in_user, only: [:new, :create]
+  before_action :admin_user, only: [:revenue]
+
 
   def new
     @invoice = Invoice.new
@@ -9,7 +11,7 @@ class InvoicesController < ApplicationController
   def create
     @invoice = Invoice.new(invoice_params.merge!(status: 0))
     @cart = get_cart_from_cookie
-    if @invoice.save 
+    if @invoice.save
       flash[:info] = "Thuê sách thành công"
       cart.each do |item|
         book = Book.find(item["book_id"])
@@ -18,7 +20,7 @@ class InvoicesController < ApplicationController
           book_id: item["book_id"],
           price: book.display_price[:discount],
           quantity: item["quantity"],
-          status: 0
+          status: 0,
         )
         book.update(quantity: book.quantity - item["quantity"])
         invoice_detail.save
@@ -27,10 +29,9 @@ class InvoicesController < ApplicationController
       redirect_to root_url
     else
       flash[:error] = "An error has occurred"
-      render 'new'
+      render "new"
     end
   end
-
   def add_to_cart
     book_id = params[:book_id]
     book = Book.find(book_id)
@@ -50,7 +51,6 @@ class InvoicesController < ApplicationController
     set_cart_cookie(cart)
     redirect_to request.referrer
   end
-
   def cart
     @cart = get_cart_from_cookie || []
   end
@@ -98,7 +98,24 @@ class InvoicesController < ApplicationController
     redirect_to cart_path
   end
 
+  def revenue
+    if params[:search_date].present?
+      date = params[:search_date]
+      @invoices = Invoice.includes(:user).where("DATE(created_at) = ?", date)
+    else
+      @invoices = Invoice.includes(:user)
+    end
+
+    @total_revenue = calculate_total_revenue(@invoices)
+  end
+
   private
+
+  def calculate_total_revenue(invoices)
+    invoices.sum(&:total_price)
+  end
+  private
+
 
   def invoice_params
     params.require(:invoice).permit(:phone, :address, :expiry_date, :total_discount, :total_price, :user_id)

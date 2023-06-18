@@ -3,9 +3,9 @@
        <%= link_to "Ruby on Rails App", root_path, id: "logo" %>
        <nav>
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Home", root_path %></li>
             <% if logged? %>
                <% if admin_user? %>
+                           <li><%= link_to "Home", revenue_path %></li>
                   <li><%= link_to "Categories", create_categories_path  %></li>
                   <li><%= link_to "book rental history", rental_book_history_path  %></li>
                   <li><%= link_to "Evaluater", evaluaters_path  %></li>
