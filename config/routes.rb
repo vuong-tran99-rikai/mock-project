@@ -46,6 +46,8 @@ Rails.application.routes.draw do
   patch '/discount-detail/:id', to: 'discount_details#update'
   get '/discount-detail-destroy/:id', to: 'discount_details#destroy', as:'discount_detail_destroy'
   # post '/discount-detail-update', to: 'discount_details#update', as:'discount_detail_update'
+  # login google
+  get '/auth/:provider/callback', to: 'session#omniauth'
 
 
   resources :invoices do

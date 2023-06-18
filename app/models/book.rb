@@ -17,7 +17,7 @@ class Book < ApplicationRecord
 
     def display_price
         discounts.each do |discount|
-            if discount.Hiển_thị? 
+            if discount.Open? 
                 return last_price = {
                     current: price,
                     discount: price - (price * discount.gia_KM / 100)

@@ -16,6 +16,12 @@ gem 'active_storage_validations', '1.0.3'
 gem 'bcrypt', '~> 3.1.7'
 gem 'htmlbeautifier'
 gem 'responders'
+gem 'dotenv-rails'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
+#kiểm tra ngày tháng 
+gem 'validates_timeliness'
 
 
 # Use Puma as the app server

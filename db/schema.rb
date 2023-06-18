@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_08_094834) do
+ActiveRecord::Schema.define(version: 2023_06_17_140724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,8 @@ ActiveRecord::Schema.define(version: 2023_06_08_094834) do
     t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "uid"
+    t.string "provider"
   end
 
   add_foreign_key "discount_details", "books"

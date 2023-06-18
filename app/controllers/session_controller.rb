@@ -36,5 +36,24 @@ class SessionController < ApplicationController
     redirect_to root_url
   end
 
+  def omniauth
+    # binding.pry
+    user = User.find_or_create_by(uid: request.env['omniauth.auth'][:uid] , provider: request.env['omniauth.auth'][:provider]) do |u|
+        u.name = request.env['omniauth.auth'][:info][:last_name]
+        u.email = request.env['omniauth.auth'][:info][:email]
+        u.password_digest = SecureRandom.hex(15)
+        u.type_account = 0
+        u.status = 0
+    end
+    if user.valid?
+        session[:user_id] = user.id
+        flash[:success] = 'login thành công'
+        redirect_to root_path
+        else
+        flash[:danger] = 'không login thất bại'
+        redirect_to root_path
+    end
+  end
+
 end
 
