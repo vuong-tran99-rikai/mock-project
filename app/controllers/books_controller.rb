@@ -13,7 +13,7 @@ class BooksController < ApplicationController
 
     if @books.save
       flash[:success] = "Đã tạo thành công Book"
-      redirect_to "/create-books"
+      redirect_to "/create-book"
     else
       flash[:danger] = "Vui lòng nhập thông tin"
       render :new

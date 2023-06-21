@@ -1,11 +1,9 @@
 <div class="container">
-  <h3 class="text-center">Giỏ hàng</h3>
-
   <% if @cart.empty? %>
     <h5 class="text-center">Giỏ hàng đang rỗng</h5>
   <% else %>
     <div id="cart-table">
-      <table>
+      <table class="table table-success table-striped">
         <thead>
           <tr>
             <th scope="col">STT</th>
@@ -28,19 +26,19 @@
               <td class="text-center" ><%= book.name_book %></td>
               <td class="text-center">
                 <div style="display: flex; justify-content: space-around; align-items:center">
-                  <div class="col-4">
+                  <div class="btn_plus">
                     <%= button_to "-", reduce_quantity_path(book_id: book.id), method: :post, class: "btn btn-secondary" %>
                   </div>
-                  <div class="col-4 text-center">
+                  <div>
                     <%= item['quantity'] %>
                   </div>
-                    <div class="col-4">
-                      <% if item_quantity < max_quantity %>
-                        <%= button_to "+", add_quantity_path(book_id: book.id), method: :post, class: "btn btn-secondary" %>
-                      <% else %>
-                        <span class="error-message">Số lượng đã đạt tối đa</span>
-                      <% end %>
-                    </div>
+                  <div class="btn_minus">
+                    <% if item_quantity < max_quantity %>
+                      <%= button_to "+", add_quantity_path(book_id: book.id), method: :post, class: "btn btn-secondary" %>
+                    <% else %>
+                      <span class="error-message">Số lượng đã đạt tối đa</span>
+                    <% end %>
+                  </div>
                 </div>
               </td>
               <td class="text-center">
@@ -53,7 +51,7 @@
                   </div>
                 </div>
               </td>
-              <td class="text-center"><%= book.display_price[:discount] * item['quantity'] %></td>
+              <td class="text-center"><%= book.display_price[:discount] * item['quantity'] %> ₫</td>
               <td class="text-center">
                 <%= link_to remove_item_path(book_id: book.id), class: 'btn btn-sm btn-danger' do %>
                   <div class="bi bi-trash">X</div>
@@ -63,13 +61,10 @@
           <% end %>
         </tbody>
       </table>
-
-
-
       <div class="text-right">
-        <h5 class="total-price"><strong>Tạm tính giỏ hàng: <%= calculate_total_current(@cart) %> ₫</strong></h5>
-        <h5 class="total-price"><strong>Tiết kiệm được: -<%= calculate_total_current(@cart) - calculate_total(@cart) %> ₫</strong></h5>
-        <h5 class="total-price"><strong>Thành tiền: <%= calculate_total(@cart) %> ₫</strong></h5>
+        <div class="total-price"><strong>Tạm tính giỏ hàng: <%= calculate_total_current(@cart) %> ₫</strong></div>
+        <div class="total-price"><strong>Tiết kiệm được: -<%= calculate_total_current(@cart) - calculate_total(@cart) %> ₫</strong></div>
+        <div class="total-price"><strong>Thành tiền: <%= calculate_total(@cart) %> ₫</strong></div>
         <div class="btn_pay">
           <%= button_to "Thanh toán",
             new_invoice_path,
@@ -83,15 +78,27 @@
   <% end %>
 </div>
 
-
 <style>
+  .container {
+    margin-top: 24px;
+  }
+
   table, th, td {
     border: 1px solid black;
     text-align: center;
   }
 
+  td {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .price_info div{
+    font-size: 14px;
+  }
+
   .img_book_home {
-    max-width: 80px;
+    max-width: 40px;
     height: auto;
   }
 
@@ -128,5 +135,7 @@
   .btn_pay {
     display: flex;
     justify-content: end;
+    margin-top: 12px;
   }
 </style>
+

@@ -12,8 +12,8 @@
   <%= f.label 'Ngày trả:' %>
   <%= f.date_field :expiry_date, class: 'form-control' %>
   <div class="text-right">
-    <h5 class="total-price"><strong>Khuyến mãi: -<%= calculate_total_current(@cart) - calculate_total(@cart) %> ₫</strong></h5>
-    <h5 class="total-price"><strong>Tổng tiền thuê: <%= calculate_total(@cart) %> ₫</strong></h5>
+    <div class="total-price"><strong>Khuyến mãi: -<%= calculate_total_current(@cart) - calculate_total(@cart) %> ₫</strong></div>
+    <div class="total-price"><strong>Tổng tiền thuê: <%= calculate_total(@cart) %> ₫</strong></div>
   </div>
   <%= f.hidden_field :total_discount, value: calculate_total_current(@cart) - calculate_total(@cart) %>
   <%= f.hidden_field :total_price, value: calculate_total(@cart) %>
@@ -22,6 +22,10 @@
 <% end %>
 
 <style>
+  .text-right {
+    margin-bottom: 10px;
+  }
+
   .title_pay {
     display: block;
     font-size: 18px;
@@ -32,5 +36,14 @@
   }
   .form-control {
     margin-bottom: 10px;
+  }
+
+  .new_invoice {
+    margin-top: 20px;
+    color: black;
+  }
+
+  strong {
+    font-size: 14px;
   }
 </style>

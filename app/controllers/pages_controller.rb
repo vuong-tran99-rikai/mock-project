@@ -16,7 +16,7 @@ class PagesController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    @evaluaters = Evaluater.where(book_id: @book.id)
+    @evaluaters = Evaluater.where(book_id: @book.id).includes(:user)
   end
 
   def cart

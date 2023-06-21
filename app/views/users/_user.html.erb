@@ -2,15 +2,15 @@
 <td><%= link_to user.name, edit_user_path(user) %></td>
 <td><%= user.email %></td>
 <td><%= user.type_account.to_s.humanize %></td>
-<td>
+<td style="padding: 6px;">
   <%= button_to user.status.to_s.humanize,
       convert_status_path(user.id),
       method: :get,
-      class: user.opened? ? "btn btn-success" : "btn btn-primary" ,
+      class: user.opened? ? "btn btn-success" : "btn btn-dark" ,
       remote: true
   %>
 </td>
-<td>
+<td style="padding: 6px;">
   <% if current_user.admin? && !current_user?(user)%>
     <%= button_to "delete", user, method: :delete, class: "btn btn-danger" %>
   <% end %>
