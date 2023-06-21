@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     if @user.save 
       flash[:info] = "User created successfully"
       log_in(@user)
-      redirect_to @user
+      redirect_to root_url
     else
       flash[:error] = "An error has occurred"
       render 'new'

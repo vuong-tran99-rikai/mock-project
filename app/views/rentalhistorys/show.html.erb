@@ -1,6 +1,6 @@
 <% provide(:title, 'List Category') %>
-<h1>List Category</h1>
-<table class="custom-table">
+<h1>Rental History</h1>
+<table class="table table-success table-striped">
   <thead>
     <tr>
       <%# <th>STT</th> %>
@@ -20,11 +20,10 @@
         <td><%= history.phone %></td>
         <td><%= history.address %></td>
         <td><%= history.expiry_date %></td>
-        <td>
-          <%# button_to category.status.to_s.humanize , "/toggle_status/"+ category.id%>
-          <%= button_to history.status.to_s.humanize, toggle_status_history_path(history.id), method: :get, class: 'toggle-status-button', remote: true %>
+        <td style="padding: 6px;">
+          <%= button_to history.status.to_s.humanize, toggle_status_history_path(history.id), method: :get, class: 'btn btn-warning', remote: true %>
         </td>
-        <td><%= button_to "Xem chi tiết", history_detail_path(history.id),method: :get %></td>
+        <td style="padding: 6px;"><%= button_to "Xem chi tiết", history_detail_path(history.id),method: :get, class: 'btn btn-info' %></td>
       </tr>
     <% end %>
   </tbody>

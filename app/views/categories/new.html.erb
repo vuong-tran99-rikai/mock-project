@@ -3,7 +3,6 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
   <div style="text-align:right">
-   <span><%= link_to "Categroty list", "/category" %></span>
   </div>
     <%= form_for(@categories, data: { turbo: false }) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
@@ -28,3 +27,9 @@
     <% end %>
   </div>
 </div>
+
+<style>
+  .row {
+    justify-content: center;
+  }
+</style>

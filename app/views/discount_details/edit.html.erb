@@ -1,9 +1,6 @@
 <% provide(:title, 'List discounts') %>
 <h1>List Book Discount</h1>
-<div style="text-align:right">
-   <span><%= link_to "Discounts list", "/discount" %></span>
-</div>
-<table class="custom-table">
+<table class="table table-success table-striped">
   <thead>
     <tr>
       <%# <th>STT</th> %>
@@ -18,14 +15,14 @@
       <tr>
         <td><%= name_book.name_book %></td>
         <td>
-          <%= link_to "delete", discount_detail_destroy_path(book_id: name_book.id), class: 'toggle-status-button btn btn-primary' %>
+          <%= link_to "delete", discount_detail_destroy_path(book_id: name_book.id), class: 'toggle-status-button btn btn-danger' %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <h1>Add discounts</h1>
-<div class="row">
+<div class="row" style="justify-content: center; color: black;" >
   <div class="col-md-6 col-md-offset-3">
     <%= form_with url: discount_detail_path(@discounts), method: :patch do |f| %>
       <%= f.label :name_book %>
@@ -37,11 +34,18 @@
         </select>
       </div>
 
-      <input type="text" id="selectedOptions" readonly>
+      <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" id="selectedOptions" readonly style="margin: 12px 0 12px 0;">
       <%= f.submit "Update Discounts", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>
+
+<style>
+  label {
+    font-weight: bold;
+  }
+</style>
+
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     var selectElement = document.getElementById("inputGroupSelect02");

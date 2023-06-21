@@ -1,6 +1,6 @@
 <% provide(:title, 'List discounts') %>
 <h1>List discounts</h1>
-<table class="custom-table">
+<table class="table table-success table-striped">
   <thead>
     <tr>
       <%# <th>STT</th> %>
@@ -10,7 +10,7 @@
       <th>End day</th>
       <th>Status</th>
       <th>Action</th>
-      <th>Discount_detail</th>
+      <th></th>
       <!-- Các cột khác (nếu có) -->
     </tr>
   </thead>
@@ -24,10 +24,26 @@
         <td style = "text-align:center ">
           <%=discount.status.to_s.humanize %>
         </td>
-        <td><%= button_to "delete",discount_destroy_path(discount.id), method: :get, class: 'toggle-status-button', remote: true%><%= button_to "edit", discount_edit_path(discount),method: :get %></td>
-        <!-- Các cột khác (nếu có) -->
-        <td><%= button_to "Xem chi tiết", discount_detail_seen_path(discount.id),method: :get %></td>
+        <td style="padding: 4px;">
+          <div style="display: flex;">
+            <%= button_to "Delete",discount_destroy_path(discount.id), method: :get, class: 'btn btn-danger', remote: true%>
+            <%= button_to "Edit", discount_edit_path(discount),method: :get, class: "btn btn-warning" %>
+          </div>
+        </td>
+        <td style="padding: 4px;">
+          <%= button_to "Xem chi tiết", discount_detail_seen_path(discount.id),method: :get, class: 'btn btn-info' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<style>
+  .button_to{
+    flex: 1;
+    margin: 4px;
+  }
+  .button_to input {
+    font-size: 15px;
+  }
+</style>

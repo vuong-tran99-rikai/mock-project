@@ -17,23 +17,31 @@
       <div class="detail_author">Tác giả: <%= @book.author %></div>
       <div class="detail_quantity">Số lượng: <%= @book.quantity %></div>
       <%= number_field :quantity, class: 'form-control' %>
-      <%= link_to "Đánh giá", create_evaluaters_path(@book.id)  %>
       <%= button_to "Thêm",
           add_item_path(@book.id),
           method: :get,
           disabled: (@book.quantity < 1) ? true : false,
           class: "btn btn-danger",
-          remote: true
+          remote: true,
+          style: 'margin-top: 10px'
       %>
+      <div class="btn_vote" style="display: flex; margin: 10px 0;">
+        <%= button_to "Đánh giá",
+          create_evaluaters_path(@book.id),
+          method: :get,
+          class: "btn_comment",
+          remote: true
+        %>
+      </div>
       <% @evaluaters.each do |evaluater| %>
         <div class="comment">
-          <p class="comment-text"><%= evaluater.user.name %></p>
-          <p class="comment-text"><%= evaluater.comment %></p>
+          <div class="comment-text"><%= evaluater.user.name %></div>
           <div class="stars">
             <% evaluater.level.times do |n| %>
               <span class="star">&#9733;</span>
             <% end %>
           </div>
+          <p class="comment-text"><%= evaluater.comment %></p>
         </div>
       <% end %>
       
@@ -42,5 +50,16 @@
   </div>
 </div>
 
+<style>
+  .btn_vote {
+    
+  }
 
+  .btn_comment {
+    color: red;
+    border: 2px solid red;
+    border-radius: 32px;
+    padding: 0px 10px;
+  }
+</style>
 

@@ -1,32 +1,26 @@
-<div class="container_search">
-  <%= form_with(url: root_url, method: "get", class: "form-inline") do |form| %>
-    <div class="form_search">
-      <%= form.text_field :search, class: "form-control", placeholder: "Search", aria_label: "Search" %>
-      <%= form.submit "Search", class: "btn btn-primary" %>
-    </div>
-  <% end %>
-</div>
-  
-
-<div style="display: flex; justify-content: end;">
-  <%= button_to "Giỏ hàng", "/cart", method: :get, class: "btn btn-danger" %>
-</div>
 <div class="container">
-       <nav>
-          <ul class="nav navbar-nav navbar-right">
-            <% @category.each do |category| %>
-             <li><a href="/evaluaters"><%= category.name_category %></a></li>
-            <% end %>
-          </ul>
-       </nav>
-  </div>
+  <nav>
+    <ul class="nav navbar-nav navbar-right">
+      <% @category.each do |category| %>
+        <!-- <li><a href="/evaluaters"><%= category.name_category %></a></li> -->
+        <div class="btn_category">
+          <%= button_to category.name_category,
+            '/evaluaters',
+            method: :get,
+            remote: true
+          %>
+        </div>
+      <% end %>
+    </ul>
+  </nav>
+</div>
 <div class="container_grid">
   <% @books.each do |book| %>
     <div class="box">
       <%= link_to image_tag(book.image, class: 'img_book_home', alt: book.name_book), detail_path(book) %>
       <div class="description_book">
-        <div><%= book.name_book %></div>
-        <div>Tác giả: <%= book.author %></div>
+        <div class="book_name"><%= book.name_book %></div>
+        <div class="book_author">Tác giả: <%= book.author %></div>
         <div class="price_info">
           <div>Giá: </div>
           <div class="price_discount"><%= book.display_price[:discount] %></div>
@@ -38,9 +32,34 @@
         add_to_cart_invoices_path(book_id: book.id),
         method: :get,
         disabled: (book.quantity < 1 ) ? true : false,
-        class: "btn btn-success",
+        class: "btn btn-danger",
         remote: true
       %>
     </div>
   <% end %> 
 </div>
+
+<style>
+  .container_grid {
+    color: black;
+  }
+
+  .btn_category {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    font-size: 14px;
+    margin-top: 12px;
+    padding-right: 5%;
+  }
+
+  .btn_category form input {
+    font-size: 13px;
+    padding: 6px 13px;
+    border-radius: 52px;
+    border: solid 1px #e0e0e0;
+    background-color: rgb(0, 101, 255);
+    color: #fff;
+  }
+</style>
+

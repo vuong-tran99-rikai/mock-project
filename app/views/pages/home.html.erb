@@ -1,8 +1,7 @@
 <% provide(:title, 'Home') %>
-<div class="center jumbotron">
-  <% if admin_user? %>
-    <%= render 'admin' %>
-  <% else %>
-    <%= render 'customer' %>
-  <% end %>
-</div>
+
+<% if admin_user? %>
+  <%= render 'admin' %>
+<% else %>
+  <%= render 'customer' %>
+<% end %>
